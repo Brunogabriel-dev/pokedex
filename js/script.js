@@ -4,8 +4,11 @@ const fetchPokemon = async (pokemon) => {
   return data;
 }
 
-const renderPokemon = (pokemon) => {
+const renderPokemon = async (pokemon) => {
 
-  const data = fetchPokemon(pokemon);
+  const data = await fetchPokemon(pokemon);
   
+  console.log(data);
 }
+
+renderPokemon()
