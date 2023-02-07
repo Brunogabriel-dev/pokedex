@@ -7,8 +7,13 @@ const input = document.querySelector('.input__search');
 
 const fetchPokemon = async (pokemon) => {
   const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`);
+
+  if (APIResponse.status == 200 ) {
   const data = await APIResponse.json();
   return data;
+
+}
+
 }
 
 const renderPokemon = async (pokemon) => {
@@ -18,12 +23,12 @@ const renderPokemon = async (pokemon) => {
   pokemonName.innerHTML = data.name;
   pokemonNumber.innerHTML = data.id;
   pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_dafault'];
+
+  input.value = '';
   
 }
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-
-  renderPokemon(input.value.toLowerCase());
-  input.value = '';
+  renderPokemon(input.value);
 });
